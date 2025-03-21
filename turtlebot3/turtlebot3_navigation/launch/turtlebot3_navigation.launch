@@ -1,0 +1,36 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/turtlebot3_stage_1_map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+  <arg name="robot_name" default=""/>
+
+  <!-- Turtlebot3 -->
+  <!-- <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include> -->
+
+  <!-- Map server -->
+  <group ns = "$(arg robot_name)">
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+    <!-- AMCL -->
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
+      <arg name="robot" value="$(arg robot_name)"/>
+    </include>
+
+    <!-- move_base -->
+    <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
+      <arg name="model" value="$(arg model)" />
+      <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+      <arg name="robot" value="$(arg robot_name)"/>
+    </include>
+  </group>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz_$(arg robot_name)" required="true"
+          args="-d $(find turtlebot3_navigation)/rviz/$(arg robot_name)_navigation.rviz"/>
+  </group>
+</launch>

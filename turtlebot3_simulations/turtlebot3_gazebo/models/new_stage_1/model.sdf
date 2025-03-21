@@ -1,0 +1,61 @@
+<sdf version='1.7'>
+  <model name='urdf_1'>
+  <static>true</static>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.37306 0.21 0.38478 0 -0 0</pose>
+        <mass>2996</mass>
+        <inertia>
+          <ixx>6188.8</ixx>
+          <ixy>-1.0916e-14</ixy>
+          <ixz>8.4617</ixz>
+          <iyy>19100</iyy>
+          <iyz>-7.506e-14</iyz>
+          <izz>12991</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/jiaxin/workspace/turtlebot3/src/turtlebot3_simulations/turtlebot3_gazebo/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+          <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>/home/jiaxin/workspace/turtlebot3/src/turtlebot3_simulations/turtlebot3_gazebo/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Wood</name>
+          </script>
+          <ambient>1 0.764706 0.305882 1</ambient>
+        </material>
+      </visual>
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+    </link>
+    <pose>0 0 0 0 -0 0</pose>
+  </model>
+</sdf>

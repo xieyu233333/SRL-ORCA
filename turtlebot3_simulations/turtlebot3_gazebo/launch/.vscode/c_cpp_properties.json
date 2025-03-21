@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/noetic/include/**",
+        "/home/qjm/orca/turtlebot3/devel/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/amcl/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/base_local_planner/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/carrot_planner/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/clear_costmap_recovery/include/**",
+        "/home/qjm/orca/turtlebot3/src/collvoid/collvoid_local_planner/include/**",
+        "/home/qjm/orca/turtlebot3/src/collvoid/collvoid_simple_global_planner/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/costmap_2d/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/dwa_local_planner/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/global_planner/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/map_server/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/move_base/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/move_slow_and_clear/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/nav_core/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/navfn/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/rotate_recovery/include/**",
+        "/home/qjm/orca/turtlebot3/src/turtlebot3_simulations/turtlebot3_fake/include/**",
+        "/home/qjm/orca/turtlebot3/src/turtlebot3_simulations/turtlebot3_gazebo/include/**",
+        "/home/qjm/orca/turtlebot3/src/turtlebot3/turtlebot3_slam/include/**",
+        "/home/qjm/orca/turtlebot3/src/navigation/voxel_grid/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

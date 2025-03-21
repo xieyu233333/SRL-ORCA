@@ -1,0 +1,69 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="robot" default=""/>
+  <arg name="type" default="turtle" />
+  <arg name="controlled" default="true" />
+
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="cmd_vel_topic" default="cmd_vel" />
+  <arg name="odom_topic" default="odom" />
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam command="load" file="$(find collvoid_stage)/params/params_$(arg type).yaml" />
+    <rosparam command="load" file="$(find collvoid_stage)/params/collvoid_config.yaml" />
+    <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /> -->
+    <param name="base_local_planner" value="collvoid_local_planner/CollvoidLocalPlanner" />
+    <!-- <param name="base_global_planner" value="global_planner/GlobalPlanner" /> -->
+    <param name="base_global_planner" value="collvoid_simple_global_planner/CollvoidSimpleGlobalPlanner" />
+    <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find turtlebot3_navigation)/param/local_costmap_params.yaml" command="load" />
+    <param name="global_costmap/global_frame" value="$(arg robot)/odom"/>
+    <param name="global_costmap/robot_base_frame" value="$(arg robot)/base_footprint"/>
+    <param name="local_costmap/global_frame" value="$(arg robot)/odom"/>
+    <param name="local_costmap/robot_base_frame" value="$(arg robot)/base_footprint"/>
+    <param name="global_costmap/observation_sources" value="scan"/>
+    <param name="global_costmap/scan/sensor_frame" value="$(arg robot)/base_scan"/>
+    <param name="global_costmap/scan/data_type" value="LaserScan"/>
+    <param name="global_costmap/scan/topic" value="scan"/>
+    <param name="global_costmap/scan/marking" value="true"/>
+    <param name="global_costmap/scan/clearing" value="true"/>
+    <param name="local_costmap/observation_sources" value="scan"/>
+    <param name="local_costmap/scan/sensor_frame" value="$(arg robot)/base_scan"/>
+    <param name="local_costmap/scan/data_type" value="LaserScan"/>
+    <param name="local_costmap/scan/topic" value="scan"/>
+    <param name="local_costmap/scan/marking" value="true"/>
+    <param name="local_costmap/scan/clearing" value="true"/>
+      <!-- global_frame: odom
+  robot_base_frame: base_footprint -->
+    <rosparam file="$(find turtlebot3_navigation)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find turtlebot3_navigation)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find turtlebot3_navigation)/param/dwa_local_planner_params_$(arg model).yaml" command="load" />
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+    <remap from="/position_share_in" to="/position_share" />
+    <remap from="/position_share_out" to="/position_share" />
+  </node>
+  <!-- <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam command="load" file="$(find collvoid_stage)/params/params_$(arg type).yaml" />
+    <rosparam command="load" file="$(find collvoid_stage)/params/collvoid_config.yaml" />
+    <remap from="map" to="/map" />
+    <param name="~controlled" value="$(arg controlled)" />
+    <param name="~tf_prefix" value="$(arg robot)" /> -->
+    <!-- <param name="~/global_costmap/robot_base_frame" value="$(arg robot)base_link" /> 
+    <param name="~/local_costmap/robot_base_frame" value="$(arg robot)base_link" />  -->
+    <!-- <param name="~/local_costmap/global_frame" value="$(arg robot)odom" /> 
+    <param name="base_local_planner" value="collvoid_local_planner/CollvoidLocalPlanner" />
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" /> -->
+    <!-- <param name="base_global_planner" value="collvoid_simple_global_planner/CollvoidSimpleGlobalPlanner" /> -->
+    <!-- <remap from="/position_share_in" to="/position_share" />
+    <remap from="/position_share_out" to="/position_share" /> -->
+
+      <!-- <param name="base_local_planner" value="collvoid_dwa_local_planner/DWAPlannerROS" /> -->
+      <!-- <param name="~DWAPlannerROS/global_frame_id" value="$(arg robot)/odom" />      -->
+      <!-- <param name="base_global_planner" value="collvoid_simple_global_planner/CollvoidSimpleGlobalPlanner" /> -->
+  <!-- </node> -->
+</launch>
