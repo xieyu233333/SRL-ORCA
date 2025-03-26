@@ -2,6 +2,12 @@
 
 **SRL-ORCA** is an open-source program designed to ensure safe and efficient navigation for robot swarms in dynamic and complex environments without the need for a map. It employs a safety-reinforced learning approach, addressing the safety deficiencies inherent in traditional DRL methods, and theoretically guarantees collision avoidance safety in homogeneous scenarios. All technical documentation is available in both Chinese and English.
 
+<p align="center" style="display: flex; justify-content: center;">
+    <img src="./srl_orca_gif5.gif" alt="drawing" width="350"/>
+    <img src="./srl_orca_gif6.gif" alt="drawing" width="350"/>
+</p>
+
+
 ## Author
 
  **Jianmin Qin** (Code Contributor), Jiahu Qin, Jiaxin Qiu, Qingchen Liu, Man Li and Qichao Ma
